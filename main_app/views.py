@@ -1,9 +1,5 @@
 from django.shortcuts import render
 
-fishes = [
-  {'name': 'Swimmy', 'breed': 'tabby', 'description': 'furry little demon', 'age': 3},
-  {'name': 'Scaley', 'breed': 'calico', 'description': 'gentle and loving', 'age': 0},
-]
 
 # Create your views here.
 
