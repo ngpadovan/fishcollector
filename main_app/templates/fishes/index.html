@@ -4,11 +4,12 @@
 <h1>Fish List</h1>
 
 {% for fish in fishes %}
+<a href="{% url 'detail' fish.id %}">
   <div class="card">
     <div class="card-content">
       <span class="card-title">{{ fish.name }}</span>
       <p>Breed: {{ fish.breed }}</p>
-      <p>Description: {{ fish.description }}</p>
+      <p>Description: {{ fish.description|linebreaks }}</p>
       {% if fish.age > 0 %}
         <p>Age: {{ fish.age }}</p>
       {% else %}
@@ -16,6 +17,7 @@
       {% endif %}
     </div>
   </div>
+</a>
 {% endfor %}
 
 {% endblock %}

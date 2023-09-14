@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Fish Details</h1>
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">{{ fish.name }}</span>
+    <p>Breed: {{ fish.breed }}</p>
+    <p>Description: {{ fish.description|linebreaks }}</p>
+    {% if fish.age > 0 %}
+      <p>Age: {{ fish.age }}</p>
+    {% else %}
+      <p>Age: Guppy</p>
+    {% endif %}
+  </div>
+
+</div>
+<!-- Add the following markup -->
+<div class="card-action">
+  <a href="{% url 'fishes_update' fish.id %}">Edit</a>
+  <a href="{% url 'fishes_delete' fish.id %}">Delete</a>
+</div>
+<!-- New markup above -->
+</div>
+</div>
+
+{% endblock %}
