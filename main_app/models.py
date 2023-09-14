@@ -7,8 +7,8 @@ class Fish(models.Model):
     description = models.TextField(max_length=250)
     age = models.IntegerField()
 
-def __str__(self):
-    return f'{self.name} ({self.id})'
+    def __str__(self):
+        return f'{self.name} ({self.id})'
 
-def get_absolute_url(self):
-    return reverse('detail', kwargs={'fish_id': self.id})
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'fish_id': self.id})
