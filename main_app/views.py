@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Fish
-
+from .forms import FeedingForm
 
 
 # Create your views here.
@@ -23,8 +23,9 @@ def fishes_index(request):
 
 def fishes_detail(request, fish_id):
     fish = Fish.objects.get(id=fish_id)
+    feeding_form = FeedingForm()
     return render(request, 'fishes/detail.html', {
-        'fish': fish
+        'fish': fish, 'feeding_form': feeding_form
     })
 
 class FishCreate(CreateView):
@@ -37,4 +38,13 @@ class FishUpdate(UpdateView):
 
 class FishDelete(DeleteView):
     model = Fish
-    success_url: '/fishes'
+    success_url = '/fishes'
+
+def add_feeding(request, fish_id):
+    form = FeedingForm(request.POST)
+
+    if form.is_valid():
+        new_feeding = form.save(commit=False)
+        new_feeding.fish_id = fish_id
+        new_feeding.save()
+    return redirect('detail', fish_id=fish_id)
